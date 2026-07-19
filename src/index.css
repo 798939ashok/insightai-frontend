@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-canvas: 250 251 252;
+    --color-surface: 255 255 255;
+    --color-ink-900: 15 23 42;
+    --color-ink-700: 51 65 85;
+    --color-ink-500: 100 116 139;
+    --color-ink-300: 203 213 225;
+    --color-ink-100: 241 245 249;
+  }
+
+  .dark {
+    --color-canvas: 12 15 22;
+    --color-surface: 22 27 38;
+    --color-ink-900: 241 245 249;
+    --color-ink-700: 203 213 225;
+    --color-ink-500: 148 163 184;
+    --color-ink-300: 51 65 85;
+    --color-ink-100: 30 36 50;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-canvas text-ink-900 font-sans;
+  }
+  ::selection {
+    @apply bg-brand-light text-brand-dark;
+  }
+  /* Visible keyboard focus everywhere — accessibility floor */
+  *:focus-visible {
+    outline: 2px solid #0D9488;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
