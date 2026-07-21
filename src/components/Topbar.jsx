@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Search, Bell, ChevronDown, ShieldCheck } from 'lucide-react'
+import { Search, Bell, ChevronDown, ShieldCheck, Menu } from 'lucide-react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -18,7 +18,7 @@ const NOTIFICATIONS = [
   { id: 1, text: 'Welcome to InsightAI — upload a dataset to get started.' },
 ]
 
-export default function Topbar({ title }) {
+export default function Topbar({ title, onMenuClick = () => {} }) {
   const { user } = useAuth()
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
@@ -40,10 +40,19 @@ export default function Topbar({ title }) {
   }
 
   return (
-    <header className="h-16 bg-surface border-b border-ink-100 flex items-center justify-between px-6 sticky top-0 z-10">
-      <h1 className="text-lg font-semibold text-ink-900">{title}</h1>
+    <header className="h-16 bg-surface border-b border-ink-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-10">
+      <div className="flex items-center gap-3 min-w-0">
+        <button
+          onClick={onMenuClick}
+          className="md:hidden p-2 -ml-2 rounded-lg hover:bg-ink-100 transition-colors shrink-0"
+          aria-label="Open menu"
+        >
+          <Menu size={20} className="text-ink-700" />
+        </button>
+        <h1 className="text-lg font-semibold text-ink-900 truncate">{title}</h1>
+      </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 shrink-0">
         <div className="relative hidden md:block">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-500" />
           <input
