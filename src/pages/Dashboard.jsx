@@ -93,13 +93,14 @@ export default function Dashboard() {
       {/* Recent rows */}
       {columns.length > 0 && (
         <div className="bg-surface border border-ink-100 rounded-card shadow-card">
-          <div className="p-5 pb-3">
+          <div className="p-5 pb-3 flex items-center justify-between">
             <h3 className="text-sm font-semibold text-ink-900">Recent Records</h3>
+            <span className="text-xs text-ink-500 md:hidden">Swipe to see more →</span>
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-auto max-h-[420px] scrollbar-thin">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-t border-ink-100 text-left text-xs text-ink-500 uppercase tracking-wide">
+                <tr className="border-t border-ink-100 text-left text-xs text-ink-500 uppercase tracking-wide sticky top-0 bg-surface">
                   {columns.map((col) => (
                     <th key={col} className="font-medium px-5 py-2 whitespace-nowrap">{col}</th>
                   ))}
@@ -120,4 +121,4 @@ export default function Dashboard() {
       )}
     </div>
   )
-}
+            }
